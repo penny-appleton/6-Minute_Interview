@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PhoneNumberTest;
+using PhoneNumberLib;
 
-namespace UnitTestProject1
+namespace PhoneNumberTests
 {
     [TestClass]
     public class PhoneNumberTests

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PhoneNumberTest
+namespace PhoneNumberLib
 {
     public class PhoneNumber
     {
