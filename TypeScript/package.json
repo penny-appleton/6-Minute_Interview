@@ -2,9 +2,13 @@
   "name": "6-minute-interview-ts",
   "version": "1.0.0",
   "description": "6 Minute Interview",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest"
+    "build": "./node_modules/.bin/tsc",
+    "build:watch": "./node_modules/.bin/tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
