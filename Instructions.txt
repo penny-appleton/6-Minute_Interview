@@ -1,8 +1,8 @@
 This is a preliminary screening...
 
-1. You will have 6 minutes for this exercise.
+1. You will have 15 minutes for this exercise.
 
-2. You are not expected to finish this test, no one has.  This is about seeing how you approach and solve the challenge.
+2. You are NOT expected to finish this test, no one has.  This is about seeing how you approach and solve the challenge.
 
 3. You can use anything you'd normally use during this exercise (e.g. google, ask questions, the IDE...etc)
 
