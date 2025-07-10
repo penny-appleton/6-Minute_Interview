@@ -36,7 +36,7 @@ class PhoneNumber:
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def __init__(self, original_value):
-        pass
+        self.originalValue = original_value
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     # *Reduce the string to just numbers * /
@@ -44,8 +44,8 @@ class PhoneNumber:
         pass
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def get_country_code_index(self, stripped_number):
-        pass
+    def get_country_code_index(self):
+        return self.countryCodeIndex
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def validate(self, country_code_index, stripped_number):
@@ -88,11 +88,15 @@ class PhoneNumber:
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def get_original_text(self):
-        pass
+        return self.originalValue
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def get_stripped_number(self):
-        pass
+        stripped_number = []
+        for val in self.originalValue:
+            if val.isdigit() or val in ["+","x"]:
+                stripped_number.append(val)
+        return ''.join(stripped_number)
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
