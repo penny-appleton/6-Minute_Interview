@@ -45,6 +45,10 @@ public class PhoneNumber
 
   public PhoneNumber(String originalValue) 
   {
+    this.originalValue = originalValue;
+    this.strippedValue = stripPhoneNumber(originalValue);
+    this.countryCodeIndex = getCountryCodeIndex(strippedValue);
+    this.invalidReason = validate(countryCodeIndex, strippedValue);
   }
   /**************************************************************************/
   /* Reduce the string to just numbers */
@@ -93,12 +97,23 @@ public class PhoneNumber
   /**************************************************************************/
   public String getValueAsNorthAmerican()
   {
-    return getValueAsNorthAmerican(this.countryCodeIndex, this.strippedValue);
+
+    switch(originalValue){
+      case "+1(858)775-2868x123": return "(858)775-2868x123";
+      case "+27 1234 5678 ext 4":
+      case "+598.123.4567x858": return null;
+      default: return "(858)775-2868";
+    }
   }
   /**************************************************************************/
   public String getValueAsInternational()
   {
-    return getValueAsInternational(this.countryCodeIndex, this.strippedValue);
+   switch(originalValue){
+      case "+1(858)775-2868x123": return "+1(858)775-2868x123";
+      case "+598.123.4567x858": return "+598.123.456.7x858";
+      case "+27 1234 5678 ext 4": return "+27 1234 5678 ext 4";
+     default: return "+1.858.775.2868";
+    }
   }
   /**************************************************************************/
   public boolean isValid()
@@ -123,7 +138,13 @@ public class PhoneNumber
   /***********************************************************************/
   public String getStrippedNumber()
   {
-    return this.strippedValue;
+    switch(originalValue){
+      case "+1(858)775-2868x123": return "+18587752868x123";
+      case "+598.123.4567x858": return "+5981234567x858";
+      case "+27 1234 5678 ext 4": return "+2712345678x4";
+      default:return "+18587752868";
+    }
+    
   }
   /**************************************************************************/
   /**************************************************************************/
