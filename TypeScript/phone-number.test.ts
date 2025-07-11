@@ -2,13 +2,16 @@ import { PhoneNumber } from "./phone-number";
 
 describe("PhoneNumber Tests", () => {
 
-    it('test1', () => {
-        const ph = new PhoneNumber('+1(858)775-2868');
+    it('returns original phone number', () => {
+        const phone1 = new PhoneNumber('+1(858)775-2868');
 
-        expect(ph.getOriginalText()).toBe('+1(858)775-2868');
-        expect(ph.getStrippedNumber()).toBe('+18587752868');
-        expect(ph.getValueAsNorthAmerican()).toBe('(858)775-2868');
-        expect(ph.getValueAsInternational()).toBe('+1.858.775.2868');
+        expect(phone1.getOriginalText()).toBe('+1(858)775-2868');
+
+        // const phone2 = new PhoneNumber('+1(858)775-2867');
+        // expect(phone2.getOriginalText()).toBe('+1(858)775-2868');
+        expect(phone1.getStrippedNumber()).toBe('+18587752868'); // undefined
+        expect(phone1.getValueAsNorthAmerican()).toBe('(858)775-2868');
+        expect(phone1.getValueAsInternational()).toBe('+1.858.775.2868');
     });
 
     it('test2', () => {

@@ -26,14 +26,15 @@ export class PhoneNumber {
 		"Unknown Country Code"
 	];
 
-	// An index into the countryCodes array
 	private readonly countryCodeIndex: number = PhoneNumber.usa;
 
 	private readonly strippedValue: string = undefined;
 
 	private readonly invalidReason: string = undefined;
 
-	constructor(private originalValue: string) {}
+	constructor(private originalValue: string) {
+		this.strippedValue = this.originalValue.replace(/[\(|\)|-]/g, '');
+	}
 
 	/**************************************************************************/
 	/* Reduce the string to just numbers */
@@ -117,7 +118,7 @@ export class PhoneNumber {
 
 	/***********************************************************************/
 	public getStrippedNumber(): string {
-		return this.strippedValue;
+		return this.strippedValue
 	}
 	/**************************************************************************/
 	/**************************************************************************/
