@@ -36,7 +36,8 @@ class PhoneNumber:
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def __init__(self, original_value):
-        pass
+        self.originalValue = original_value
+        
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     # *Reduce the string to just numbers * /
@@ -88,10 +89,14 @@ class PhoneNumber:
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def get_original_text(self):
-        pass
+        return self.originalValue
+        
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def get_stripped_number(self):
+        self.originalValue = self.originalValue.replace('(', '')
+        print(self.originalValue)
+        ''.join(char for char in text if char.isalnum())
         pass
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
