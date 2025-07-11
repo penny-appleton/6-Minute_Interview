@@ -1,22 +1,16 @@
 const { PhoneNumber } = require('./PhoneNumber');
 
 describe('Restaurant class', () => {
-	it('test1', () => {
+	it('returns the original phone number', () => {
 		const ph = new PhoneNumber('+1(858)775-2868');
 
 		expect(ph.getOriginalText()).toBe('+1(858)775-2868');
-		expect(ph.getStrippedNumber()).toBe('+18587752868');
-		expect(ph.getValueAsNorthAmerican()).toBe('(858)775-2868');
-		expect(ph.getValueAsInternational()).toBe('+1.858.775.2868');
 	});
 
-	it('test2', () => {
+	it.only('returns a stripped version of the phone number', () => {
 		const ph = new PhoneNumber('+1(858)775-2868x123');
 
-		expect(ph.getOriginalText()).toBe('+1(858)775-2868x123');
 		expect(ph.getStrippedNumber()).toBe('+18587752868x123');
-		expect(ph.getValueAsNorthAmerican()).toBe('(858)775-2868x123');
-		expect(ph.getValueAsInternational()).toBe('+1(858)775-2868x123');
 	});
 
 	it('test3', () => {

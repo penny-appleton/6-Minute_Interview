@@ -3,7 +3,7 @@
  * this class is immutable.
  **/
 class PhoneNumber {
-	constructor() {
+	constructor(originalValue = null) {
 		this.USA = 0;
 
         this.COUNTRY_CODES = [
@@ -27,7 +27,7 @@ class PhoneNumber {
 		];
 
 		/** The original value. */
-		this.originalValue = null;
+		this.originalValue = originalValue;
 
 		// An index into the COUNTRY_CODES array
 		this.countryCodeIndex = this.USA;
@@ -38,9 +38,14 @@ class PhoneNumber {
 	PhoneNumber(originalValue) {}
 
 	/**************************************************************************/
-	/* Reduce the string to just numbers */
+	/* Reduce the string to just numbers, removing formatting characters */
 	stripPhoneNumber(number) {
-		return null;
+		if (!number) return null;
+		// Remove parentheses, hyphens, spaces, and dots
+		// Also convert "ext" to "x"
+		return number
+			.replace(/[().\- ]/g, '')
+			.replace(/ext/i, 'x');
 	}
 
 	/**************************************************************************/
@@ -49,11 +54,11 @@ class PhoneNumber {
 	}
 
 	/**************************************************************************/
-	validate(countryCodeIndex, stripedNumber) {
-		return countryCodeIndex === USA
-			? validateNorthAmerican(countryCodeIndex, stripedNumber)
-			: validateInternational(countryCodeIndex, stripedNumber);
-	}
+	// validate(countryCodeIndex, stripedNumber) {
+	// 	return countryCodeIndex === USA
+	// 		? validateNorthAmerican(countryCodeIndex, stripedNumber)
+	// 		: validateInternational(countryCodeIndex, stripedNumber);
+	// }
 
 	/**************************************************************************/
 	/*
@@ -124,6 +129,7 @@ class PhoneNumber {
 
 	/***********************************************************************/
 	getStrippedNumber() {
+		this.stripPhoneNumber(this.originalValue);
 		return this.strippedValue;
 	}
 	/**************************************************************************/
