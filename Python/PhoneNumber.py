@@ -27,21 +27,15 @@ class PhoneNumber:
     Reasons = {"Phone Number Too Long or Too Short", "US Number must be length 10", "Unknown Country Code"}
 
     #** The original value.
-    originalValue = None
+    originalValue: str = None
 
     # An index into the COUNTRY_CODES array
     countryCodeIndex = USA
-    __stripped_value = None
     __invalid_reason = None
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def __init__(self, original_value):
-        pass
-
-    # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    # *Reduce the string to just numbers * /
-    def strip_phone_number(self, number):
-        pass
+    def __init__(self, original_value: str):
+        self.originalValue = original_value
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def get_country_code_index(self, stripped_number):
@@ -67,12 +61,12 @@ class PhoneNumber:
         pass
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def get_value_as_north_american(self, country_code_index, stripped_number):
-        pass
+    def get_value_as_north_american(self) -> str:
+        return self.originalValue[2::]
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def get_value_as_international(self, country_code_index, stripped):
-        pass
+    def get_value_as_international(self):
+        return self._strip_number('.')
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     def is_valid(self):
@@ -87,12 +81,20 @@ class PhoneNumber:
         pass
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def get_original_text(self):
-        pass
+    def get_original_text(self) -> str:
+        return self.originalValue
+
+    def _strip_number(self, replace_character: str = '') -> str:
+        special_characters_to_remove = ['(', ')', '-']
+        stripped_number = self.originalValue
+        for character in special_characters_to_remove:
+            stripped_number = stripped_number.replace(character, '')
+        
+        return stripped_number
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def get_stripped_number(self):
-        pass
+    def get_stripped_number(self) -> str:
+        return self._strip_number()
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
