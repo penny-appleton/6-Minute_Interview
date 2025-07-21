@@ -29,16 +29,25 @@ export class PhoneNumber {
 	// An index into the countryCodes array
 	private readonly countryCodeIndex: number = PhoneNumber.usa;
 
-	private readonly strippedValue: string = undefined;
+	private strippedValue: string = undefined;
 
 	private readonly invalidReason: string = undefined;
 
-	constructor(private originalValue: string) {}
+	private originalValue: string;
+
+	constructor(originalValue: string) { this.originalValue = originalValue}
 
 	/**************************************************************************/
 	/* Reduce the string to just numbers */
-	private static stripPhoneNumber(number: string): string {
-		return undefined;
+	private stripPhoneNumber(number: string): string {
+		const invalidSet = new Set(['(', ')', '-'])
+		let s = ""
+		for (const c of number) {
+			if (!(invalidSet.has(c))) { 
+				s += c
+			}
+		}
+		return s;
 	}
 
 	/**************************************************************************/
@@ -117,7 +126,8 @@ export class PhoneNumber {
 
 	/***********************************************************************/
 	public getStrippedNumber(): string {
-		return this.strippedValue;
+		this.strippedValue = this.stripPhoneNumber(this.originalValue)
+		return this.strippedValue
 	}
 	/**************************************************************************/
 	/**************************************************************************/
