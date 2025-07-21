@@ -1,3 +1,5 @@
+import re
+
 class PhoneNumber:
     USA = 0
 
@@ -35,8 +37,23 @@ class PhoneNumber:
     __invalid_reason = None
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
-    def __init__(self, original_value):
-        pass
+class PhoneNumber:
+    def __init__(self, raw):
+        self.original = raw
+        self.ext = None
+        self.country_code = '+1'
+        self.national_number = ''
+        self._parse()
+
+    def _parse(self):
+        ext_match = re.search(r'(?:x|ext\.?|extension)\s*(\d+))', self.original, re.IGNORECASE)
+        if ext_match;
+            self.ext = ext_match.group(1)
+            base = self.original[:ext_match.start()]
+        else:
+            base = self.original
+            
+                
 
     # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** /
     # *Reduce the string to just numbers * /
